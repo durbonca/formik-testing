@@ -1,4 +1,4 @@
-import SimpleSignupForm from './SimpleSignupForm'
+import {SignupForm, SignupFormValidation, FormValitaionWithYup} from './forms'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() { return (
@@ -8,36 +8,36 @@ function App() { return (
                   <nav>
                     <Link to="/">
                       <button>
-                          Simple Sign Up Form
+                          Simple Sign Up Form (without validation)
                       </button>
                       </Link>
-                    <Link to="/test">
+                    <Link to="/form-validation">
                       <button>
-                        Test
+                        Simple Sign Up Form (with vanilla JS validation)
                       </button>
                     </Link>
-                    <Link to="/test2">
+                    <Link to="/yup">
                       <button>
-                        Test 2
+                        Schema Validation with Yup
                       </button>
                     </Link>
                   </nav>
               <Switch>
                 <Route exact path="/">
-                  <SimpleSignupForm />
+                  <SignupForm />
                 </Route>
-                <Route path="/about">
-                  
+                <Route path="/form-validation">
+                  <SignupFormValidation />
                 </Route>
-                <Route path="/users">
-                  
+                <Route path="/yup">
+                  <FormValitaionWithYup />
                 </Route>
               </Switch>
             </div>
         </Router>
 
         <footer>
-         <p> This website is a demo of all the forms samples at </p> <a href="https://formik.org/"> FORMIK REACT</a>   
+         <p> This website is a demo of forms samples with</p> <a href="https://formik.org/">FORMIK REACT</a>   
         </footer>
       </>
   ) }

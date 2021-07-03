@@ -627,6 +627,10 @@
       color: var(--red-400);
     }
   }
+
+  .error{
+    color: var(--red-500)
+  }
   
   button:disabled {
     opacity: 0.5;

@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import "./styles.css";
+import "../styles.css";
 
 const SignupForm = () => {
     const formik = useFormik({
