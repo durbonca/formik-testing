@@ -55,7 +55,6 @@
   
   body {
     padding: 0;
-    margin: calc((100vh / 25) * 1.563) calc((100vw / 25) * 1.563);
     background-color: white;
     font-weight: 400;
     line-height: 1.563;
@@ -71,6 +70,10 @@
     }
   }
   
+  .container {
+    margin: 40px;
+  }
+
   /* Typography
   ––––––––––––––––––––––––––––––––– */
   
@@ -649,3 +652,11 @@
     margin-top: 1rem;
   }
   
+  footer {
+    position: fixed;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
+  }
