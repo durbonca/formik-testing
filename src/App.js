@@ -5,17 +5,23 @@ function App() { return (
       <>
         <Router>
             <div className="container">
-              <nav>
-                <button>
-                  <Link to="/">Simple Signup Form</Link>
-                </button>
-                <button>
-                  <Link to="/about">Test</Link>
-                </button>
-                <button>
-                  <Link to="/users">Test</Link>
-                </button>
-              </nav>
+                  <nav>
+                    <Link to="/">
+                      <button>
+                          Simple Sign Up Form
+                      </button>
+                      </Link>
+                    <Link to="/test">
+                      <button>
+                        Test
+                      </button>
+                    </Link>
+                    <Link to="/test2">
+                      <button>
+                        Test 2
+                      </button>
+                    </Link>
+                  </nav>
               <Switch>
                 <Route exact path="/">
                   <SimpleSignupForm />

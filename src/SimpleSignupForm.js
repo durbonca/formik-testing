@@ -3,7 +3,7 @@ import "./styles.css";
 
 const SignupForm = () => {
     const formik = useFormik({
-      initialValues: { name: "", email: "" },
+      initialValues: { firstName: "", lastName: "", email: "" },
       onSubmit: values => {
         alert(JSON.stringify(values, null, 2));
       }
@@ -11,13 +11,21 @@ const SignupForm = () => {
 
     return (
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="email">Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input
-          id="name"
-          name="name"
+          id="firstName"
+          name="firstName"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.name}
+          value={formik.values.firstName}
+        />
+        <label htmlFor="lastName">Last Name</label>
+        <input
+          id="lastName"
+          name="lastName"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.lastName}
         />
         <label htmlFor="email">Email Address</label>
         <input
