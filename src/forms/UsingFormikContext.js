@@ -31,7 +31,7 @@ const UsingFormikContext = () => {
         >
             <Form>
                 {/* its now more simplified with formik components */}
-                <label htmlFor="firstName">te First Name</label>
+                <label htmlFor="firstName">First Name</label>
                 <Field name="firstName" type="text" />
                 <ErrorMessage name="firstName" />
 
