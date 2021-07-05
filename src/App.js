@@ -1,4 +1,4 @@
-import {SignupForm, SignupFormValidation, FormValitaionWithYup} from './forms'
+import {SignupForm, SignupFormValidation, FormValitaionWithYup, UsingFormikContext} from './forms'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() { return (
@@ -21,6 +21,11 @@ function App() { return (
                         Schema Validation with Yup
                       </button>
                     </Link>
+                    <Link to="/context">
+                      <button>
+                        using FORMIK context
+                      </button>
+                    </Link>
                   </nav>
               <Switch>
                 <Route exact path="/">
@@ -31,6 +36,9 @@ function App() { return (
                 </Route>
                 <Route path="/yup">
                   <FormValitaionWithYup />
+                </Route>
+                <Route path="/context">
+                  <UsingFormikContext />
                 </Route>
               </Switch>
             </div>

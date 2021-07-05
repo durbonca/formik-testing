@@ -1,39 +1,27 @@
 import { useFormik } from "formik";
+import * as Yup from 'yup';
 import "../styles.css";
 
 const FormValitaionWithYup = () => {
-    
-    // A custom validation function. This must return an object
-    // which keys are symmetrical to our values/initialValues
-    const validate = values => {
-      const errors = {};
-      if (!values.name) {
-        errors.name = 'Required';
-      } else if (values.name.length > 15) {
-        errors.name = 'Must be 15 characters or less';
-      }
-
-      if (!values.age) {
-        errors.age = 'Age is Required!';
-      } else if (!/^[0-9]*$/g.test(values.age)){
-        errors.age = 'This don\'t look as a number...';
-      } else if (values.age.length > 2) {
-        errors.age = 'you cant be more of 99 years old!';
-      }
-
-      if (!values.email) {
-        errors.email = 'Required';
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-      }
-
-      return errors;
-    };
 
     // Formik
     const formik = useFormik({
-      initialValues: { name: "", age: "", email: "" },
-      validate,
+      initialValues: { userName: "", phone: "", email: "" },
+      
+      // validate with YUP api
+      validationSchema: Yup.object({
+        userName: Yup.string()
+          .max(15, 'Must be max 15 characters or less')
+          .min(2, 'Must be at least 2 characters or more')
+          .required('The Required'),
+        phone: Yup.number()
+          .typeError('must be a number')
+          .min(11111111, 'Must be 8 characters or more')
+          .max(999999999, 'Must be 9 characters or less')
+          .required('Required'),
+        email: Yup.string().email('Invalid email address').required('Required'),
+      }),
+
       onSubmit: values => {
         alert(JSON.stringify(values, null, 2));
       }
@@ -42,38 +30,43 @@ const FormValitaionWithYup = () => {
     // Form
     return (
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="firstName">Name</label>
+        <label htmlFor="firstName">Username</label>
         <input
-          id="name"
-          name="name"
+          id="userName"
+          name="userName"
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.firstName}
+          value={formik.values.userName}
         />
         {/* noticed were using formik.touched.'property' to check errors just when onBlur is true */}
-        {formik.touched.name && formik.errors.name ? <div className="error">{formik.errors.name}</div> : null}
+        {formik.touched.userName && formik.errors.userName ? <div className="error">{formik.errors.userName}</div> : null}
 
-        <label htmlFor="lastName">Age</label>
+        <label htmlFor="lastName">phone</label>
         <input
-          id="age"
-          name="age"
+          id="phone"
+          name="phone"
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.lastName}
+          value={formik.values.phone}
         />
         {/* noticed were using formik.touched.'property' to check errors just when onBlur is true */}
-        {formik.touched.age && formik.errors.age ? <div className="error">{formik.errors.age}</div> : null}
+        {formik.touched.phone && formik.errors.phone ? <div className="error">{formik.errors.phone}</div> : null}
 
         <label htmlFor="email">Email Address</label>
         <input
           id="email"
-          name="email"
           type="text"
+          
+          /* you also can spread all the values to formik as props */
+          /* name="email"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.email}
+          value={formik.values.email} */
+
+          {...formik.getFieldProps('email')}
+
         />
         {/* noticed were using formik.touched.'property' to check errors just when onBlur is true */}
         {formik.touched.email && formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
